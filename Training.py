@@ -4,14 +4,22 @@ from tensorflow import keras
 
 # Load the data
 
+## In case if the dataset is already in your working space
 # Get current working directory
-current_dir = os.getcwd()
+current_dir = os.getcwd() 
 
 # Append data/mnist.npz to the previous path to get the full path
-data_path = os.path.join(current_dir, "data/mnist.npz")
+data_path = os.path.join(current_dir, "data/mnist.npz") 
 
-# Discard test set
-(x_train, y_train), _ = tf.keras.datasets.mnist.load_data(path=data_path)
+# Get dataset
+(training_images, training_labels), (test_images, test_labels)= tf.keras.datasets.mnist.load_data(path=data_path)
+
+## In case you need to download the dataset MNIST
+# Load the Fashion MNIST dataset
+fmnist = tf.keras.datasets.fashion_mnist
+# Load the training and test split of the Fashion MNIST dataset
+(training_images, training_labels), (test_images, test_labels) = fmnist.load_data()
+
         
 # Normalize pixel values
 x_train = x_train / 255.0
